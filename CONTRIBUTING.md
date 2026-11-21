@@ -118,6 +118,9 @@ change files in place: review their changes, stage them and commit again.
 - **Security**: trufflehog, semgrep, zizmor, actionlint and `npm audit`.
 - **Commits**: messages start with `feat:` or `fix:`; every commit is signed off
   and GPG signed (`git commit -s -S`, see [DCO.md](DCO.md)).
+- **Updating a pull request**:
+  `git pull --no-rebase -S --signoff origin main && git push` (the Update branch
+  button adds no sign-off); on Dependabot's, comment `@dependabot rebase`.
 
 ## Project layout
 
@@ -151,7 +154,7 @@ cv/
 - **Same design system as [opennudge.com](https://opennudge.com)**: the greys of
   Chrome on iOS, no accent color, never pure black or white, raised boxes,
   capsule controls (the tabs are a capsule switch), system fonts, lowercase
-  display headings, the 2 px "nudge" as the only hover movement, everything off
+  display headings, the 2 px “nudge” as the only hover movement, everything off
   for reduced motion.
 - **The opennudge mark** (`src/assets/brand/`) and the **site icons**
   (`public/favicon.*`, `public/apple-touch-icon.png`, copied from opennudge.com)
@@ -221,10 +224,11 @@ First deployment:
 The scripts in `.github/tools/harden/` apply the repository settings once the
 repository is public, either locally or through `.github/workflows/harden.yml`:
 squash merges only, the rulesets in `.github/rulesets/` (signed commits, no
-force pushes, pull requests and checks required on `main`, only `vX.Y.Z` release
-tags, never moved or deleted), GitHub Pages with the custom domain, deployments
-from `main` only, secret scanning with push protection, Dependabot alerts and
-security updates, private vulnerability reporting and CodeQL.
+force pushes but Dependabot's on its own branches, pull requests and checks
+required on `main`, only `vX.Y.Z` release tags, never moved or deleted), GitHub
+Pages with the custom domain, deployments from `main` only, secret scanning with
+push protection, Dependabot alerts and security updates, private vulnerability
+reporting and CodeQL.
 
 ### Locally
 
